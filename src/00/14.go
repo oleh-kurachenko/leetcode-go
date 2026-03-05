@@ -1,21 +1,33 @@
 package main
 
-func findFirstNonEqual(str1 string, str2 string) int {
-	i := 0
-	for ; i < len(str1) && i < len(str2); i++ {
-		if str1[i] != str2[i] {
-			return i
+func isValid(s string) bool {
+	var stack []byte
+	for i := 0; i < len(s); i++ {
+		switch s[i] {
+		case '{':
+			stack = append(stack, s[i])
+		case '(':
+			stack = append(stack, s[i])
+		case '[':
+			stack = append(stack, s[i])
+		case '}':
+			if len(stack) == 0 || stack[len(stack)-1] != '{' {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		case ']':
+			if len(stack) == 0 || stack[len(stack)-1] != '[' {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		case ')':
+			if len(stack) == 0 || stack[len(stack)-1] != '(' {
+				return false
+
+			}
+			stack = stack[:len(stack)-1]
 		}
 	}
-	return i
-}
 
-func longestCommonPrefix(strs []string) string {
-	prefix := strs[0]
-
-	for i := 1; i < len(strs); i++ {
-		prefix = prefix[0:findFirstNonEqual(prefix, strs[i])]
-	}
-
-	return prefix
+	return len(stack) == 0
 }
