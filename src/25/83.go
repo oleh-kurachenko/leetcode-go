@@ -1,9 +1,7 @@
 package main
 
-import (
-	"fmt"
-	. "leetcode/structs"
-)
+import "fmt"
+import . "leetcode/structs"
 
 import "sort"
 

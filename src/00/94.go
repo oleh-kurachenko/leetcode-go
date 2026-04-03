@@ -1,10 +1,6 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+import . "leetcode/structs"
 
 func inorderTraversal(root *TreeNode) []int {
 	if root == nil {
